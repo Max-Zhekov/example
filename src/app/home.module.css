@@ -1,0 +1,92 @@
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 36px;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b1b1b;
+  color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: #ffcc00;
+}
+
+.subtitle {
+  margin: 10px 0 5px 0;
+  color: #ffd700;
+}
+
+.text {
+  margin: 5px 0 15px 0;
+}
+
+.message {
+  font-weight: bold;
+  color: #ff4444;
+  margin: 15px 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #ffd700;
+  color: #222;
+  transform: scale(1.05);
+}
+
+.btn:disabled {
+  background-color: #555;
+  border-color: #999;
+  cursor: not-allowed;
+}
+
+.handInfo {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.handInfo__user {
+  background-color: #2a2a2a;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  min-width: 150px;
+}
+
+@media (max-width: 620px) {
+  .container {
+    padding: 18px;
+  }
+
+  .handInfo {
+    flex-direction: column;
+    gap: 0px;
+  }
+}
