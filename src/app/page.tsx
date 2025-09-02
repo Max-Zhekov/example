@@ -16,6 +16,9 @@ export default function Home() {
   const [dealerSum, setDealerSum] = useState(0);
   const [message, setMessage] = useState("");
   const [gameStage, setGameStage] = useState("initial");
+  const [winner, setWinner] = useState<"player" | "dealer" | "tie" | null>(
+    null
+  );
 
   const handleStart = () => {
     const playerHand = createDeck();
@@ -26,6 +29,7 @@ export default function Home() {
     setDealerDeck(dealerHand);
     setDealerSum(dealerHand.reduce((acc, card) => acc + card.value, 0));
     setMessage("");
+    setWinner(null);
     setGameStage("start game");
   };
 
@@ -41,6 +45,7 @@ export default function Home() {
 
     if (result.sum > 21) {
       setMessage("Player busts! Dealer wins! 💀");
+      setWinner("dealer");
       setGameStage("initial");
     }
   };
@@ -54,8 +59,9 @@ export default function Home() {
     setDealerSum(dealerResult.finalSum);
 
     // choose winner
-    const winnerMessage = determineWinner(playerSum, dealerResult.finalSum);
-    setMessage(winnerMessage);
+    const { text, winner } = determineWinner(playerSum, dealerResult.finalSum);
+    setMessage(text);
+    setWinner(winner);
     setGameStage("initial");
   };
 
@@ -64,12 +70,18 @@ export default function Home() {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Blackjack Game</h1>
         <div className={styles.handInfo}>
-          <div className={styles.handInfo__user}>
+          <div
+            className={`${styles.handInfo__user} ${
+              winner === "player" && "winner"
+            }`}>
             <h3 className={styles.subtitle}>Player Hand ({playerSum})</h3>
             <p className={styles.text}>Cards: {playerDeck.length}</p>
           </div>
 
-          <div className={styles.handInfo__user}>
+          <div
+            className={`${styles.handInfo__user} ${
+              winner === "dealer" && "winner"
+            }`}>
             <h3 className={styles.subtitle}>
               Dealer Hand ({gameStage === "initial" ? dealerSum : "?"})
             </h3>

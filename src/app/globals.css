@@ -15,3 +15,21 @@ a {
   padding: 36px;
   margin: 0 auto;
 }
+
+.winner {
+  background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  position: relative;
+}
+
+.winner::before {
+  content: "👑";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  filter: drop-shadow(0 0 3px gold);
+  z-index: 10;
+}

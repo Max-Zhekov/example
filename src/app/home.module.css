@@ -26,8 +26,25 @@
 
 .message {
   font-weight: bold;
-  color: #ff4444;
   margin: 15px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+}
+
+.message[style*="color: green"] {
+  background-color: rgba(0, 128, 0, 0.2);
+  border: 1px solid green;
+}
+
+.message[style*="color: red"] {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid red;
+}
+
+.message[style*="color: orange"] {
+  background-color: rgba(255, 165, 0, 0.2);
+  border: 1px solid orange;
 }
 
 .buttons {
@@ -72,6 +89,8 @@
   border-radius: 8px;
   margin-bottom: 15px;
   min-width: 150px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
 @media (max-width: 620px) {
