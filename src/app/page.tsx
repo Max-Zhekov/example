@@ -26,7 +26,7 @@ export default function Home() {
     setDealerDeck(dealerHand);
     setDealerSum(dealerHand.reduce((acc, card) => acc + card.value, 0));
     setMessage("");
-    setGameStage("player-turn");
+    setGameStage("start game");
   };
 
   const handleAddCard = () => {
@@ -41,7 +41,7 @@ export default function Home() {
 
     if (result.sum > 21) {
       setMessage("Player busts! Dealer wins! 💀");
-      setGameStage("game-over");
+      setGameStage("initial");
     }
   };
 
@@ -56,7 +56,7 @@ export default function Home() {
     // choose winner
     const winnerMessage = determineWinner(playerSum, dealerResult.finalSum);
     setMessage(winnerMessage);
-    setGameStage("game-over");
+    setGameStage("initial");
   };
 
   return (
@@ -71,7 +71,7 @@ export default function Home() {
 
           <div className={styles.handInfo__user}>
             <h3 className={styles.subtitle}>
-              Dealer Hand ({gameStage === "game-over" ? dealerSum : "?"})
+              Dealer Hand ({gameStage === "initial" ? dealerSum : "?"})
             </h3>
             <p className={styles.text}>Cards: {dealerDeck.length}</p>
           </div>
@@ -79,19 +79,22 @@ export default function Home() {
         {message && <p className={styles.message}>{message}</p>}
 
         <div className={styles.buttons}>
-          <button className={styles.btn} onClick={handleStart}>
+          <button
+            className={styles.btn}
+            onClick={handleStart}
+            disabled={gameStage === "start game"}>
             Start
           </button>
           <button
             className={styles.btn}
             onClick={handleAddCard}
-            disabled={gameStage !== "player-turn" || playerSum > 21}>
+            disabled={gameStage == "initial" || playerSum > 21}>
             Hit
           </button>
           <button
             className={styles.btn}
             onClick={handleStand}
-            disabled={gameStage !== "player-turn"}>
+            disabled={gameStage == "initial"}>
             Stand
           </button>
         </div>
